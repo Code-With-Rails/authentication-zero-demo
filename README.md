@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is the demo app which accompanies the blog post at https://codewithrails.com/authentication-zero.
 
-Things you may want to cover:
+# RESOURCES
 
-* Ruby version
+* [Authentication Zero GitHub Repository](https://github.com/lazaronixon/authentication-zero/)
 
-* System dependencies
+# ABOUT
 
-* Configuration
+Interested in Ruby on Rails? Code With Rails is a technical blog featuring articles and tutorials on Rails development, deployment, and scaling.
 
-* Database creation
+Visit us at https://codewithrails.com.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+(c) Copyright 2022 Code With Rails
