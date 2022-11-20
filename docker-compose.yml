@@ -1,0 +1,52 @@
+version: "3.8"
+networks:
+  backend:
+  frontend:
+  selenium:
+services:
+  db:
+    image: postgres:14.2-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - backend
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+  chrome_server:
+    image: seleniarm/standalone-chromium
+    volumes:
+      - /dev/shm:/dev/shm
+    networks:
+      - selenium
+  app:
+    build: .
+    tty: true
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      DB: postgresql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      BUNDLE_GEMFILE: /app/Gemfile
+      SELENIUM_REMOTE_URL: http://chrome_server:4444/wd/hub
+    command: script/docker-dev-start-web.sh
+    networks:
+      - backend
+      - frontend
+      - selenium
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+      - chrome_server
