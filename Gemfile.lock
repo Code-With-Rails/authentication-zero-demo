@@ -69,7 +69,6 @@ GEM
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
-    authentication-zero (2.15.9)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.14.0)
@@ -85,14 +84,20 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     childprocess (4.1.0)
+    chunky_png (1.4.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     debug (1.6.3)
       irb (>= 1.3.6)
       reline (>= 0.3.1)
     erubi (1.11.0)
+    faraday (2.7.1)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    hashie (5.0.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.5)
@@ -105,6 +110,10 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.6.2)
+    jwt (2.5.0)
+    kredis (1.3.0)
+      activesupport (>= 6.0.0)
+      redis (>= 4.2, < 6)
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -116,6 +125,7 @@ GEM
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.6.0)
+    multi_xml (0.6.0)
     net-imap (0.3.1)
       net-protocol
     net-pop (0.1.2)
@@ -127,14 +137,37 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.9-aarch64-linux)
       racc (~> 1.4)
+    oauth2 (2.0.9)
+      faraday (>= 0.17.3, < 3.0)
+      jwt (>= 1.0, < 3.0)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 4)
+      snaky_hash (~> 2.0)
+      version_gem (~> 1.1)
+    omniauth (2.1.0)
+      hashie (>= 3.4.6)
+      rack (>= 2.2.3)
+      rack-protection
+    omniauth-github (2.0.1)
+      omniauth (~> 2.0)
+      omniauth-oauth2 (~> 1.8)
+    omniauth-oauth2 (1.8.0)
+      oauth2 (>= 1.4, < 3)
+      omniauth (~> 2.0)
+    omniauth-rails_csrf_protection (1.0.1)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
     public_suffix (5.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
+    pwned (2.4.1)
     racc (1.6.0)
     rack (2.2.4)
+    rack-protection (3.0.3)
+      rack
     rack-test (2.0.2)
       rack (>= 1.3)
     rails (7.0.4)
@@ -165,10 +198,16 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    redis (4.8.0)
     regexp_parser (2.6.1)
     reline (0.3.1)
       io-console (~> 0.5)
     rexml (3.2.5)
+    rotp (6.2.1)
+    rqrcode (2.1.2)
+      chunky_png (~> 1.0)
+      rqrcode_core (~> 1.0)
+    rqrcode_core (1.2.0)
     rubocop (1.39.0)
       json (~> 2.3)
       parallel (~> 1.10)
@@ -186,12 +225,16 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
     ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.6.1)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    snaky_hash (2.0.1)
+      hashie
+      version_gem (~> 1.1, >= 1.1.1)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -211,6 +254,7 @@ GEM
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.3.0)
+    version_gem (1.1.1)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -232,15 +276,22 @@ PLATFORMS
   aarch64-linux
 
 DEPENDENCIES
-  authentication-zero
   bcrypt (~> 3.1.7)
   bootsnap
   capybara
   debug
   importmap-rails
   jbuilder
+  kredis
+  omniauth
+  omniauth-github (~> 2.0, >= 2.0.1)
+  omniauth-rails_csrf_protection
   puma (~> 5.0)
+  pwned
   rails (~> 7.0.4)
+  redis (~> 4.0)
+  rotp
+  rqrcode
   rubocop-rails (~> 2.17, >= 2.17.3)
   selenium-webdriver
   sprockets-rails

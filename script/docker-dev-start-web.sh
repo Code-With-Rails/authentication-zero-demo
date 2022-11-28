@@ -2,9 +2,6 @@
 
 set -xeuo pipefail
 
-./script/wait-for-tcp.sh db 5432
-./script/wait-for-tcp.sh redis 6379
-
 if [[ -f ./tmp/pids/server.pid ]]; then
   rm ./tmp/pids/server.pid
 fi
