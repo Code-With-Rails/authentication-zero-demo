@@ -6,6 +6,14 @@
 
 This project is the demo app which accompanies the blog post at https://codewithrails.com/rails-authentication.
 
+## USAGE
+
+To run the app, ensure you have Docker and docker-compose installed.
+
+Run `docker-compose up` and go to http://localhost:3000.
+
+To enter the development environment, run `docker-compose run app bash`. From within this bash shell, you can run generators, rake tasks, etc.
+
 ## RESOURCES
 
 * [Authentication Zero GitHub Repository](https://github.com/lazaronixon/authentication-zero/)
